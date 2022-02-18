@@ -1,7 +1,9 @@
+const url = "https://cute-savory-grandparent.glitch.me/movies"
 function getAllMovies() {
 fetch("https://cute-savory-grandparent.glitch.me/movies").then(response =>
 	response.json().then(data => {
-		for (let i = 0; i < 16; i++) {
+        $('#card-div').html("")
+		for (let i = 0; i < data.length; i++) {
 			if (data[i].title === undefined) {
 			} else {
 				let title = data[i].title.toUpperCase();
@@ -29,5 +31,24 @@ fetch("https://cute-savory-grandparent.glitch.me/movies").then(response =>
 	})
 );
 }
+function newMovies() {
+    const userInput = {
+        title: "hello",
+        actors: "",
+        genre: ""
+    };
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInput),
+    };
+
+    fetch(url, options)
+        .then( response => {console.log(response)
+            getAllMovies()})
+}
+newMovies();
 
 getAllMovies();
