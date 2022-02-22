@@ -1,5 +1,5 @@
 body{
-    background-color: #403a35;
+    background-color: #403a35 !important;
 }
 .gif {
     display: flex;
