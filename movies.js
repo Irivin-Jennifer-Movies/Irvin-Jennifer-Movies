@@ -42,10 +42,12 @@ function getAllMovies() {
 }
 
 function newMovies(newTitle, newCast, newDirector, newGenre, newDescription) {
+	$('#new-movie-submit').attr('disabled', true);
     const userInput = {
         title: newTitle,
         actors: newCast,
-        genre: newGenre
+        genre: newGenre,
+		plot: newDescription
     };
     const options = {
         method: 'POST',
@@ -58,6 +60,7 @@ function newMovies(newTitle, newCast, newDirector, newGenre, newDescription) {
     fetch(url, options)
         .then(response => {
             console.log(response)
+			$('#new-movie-submit').attr('disabled', false);
             getAllMovies()
         })
 }
