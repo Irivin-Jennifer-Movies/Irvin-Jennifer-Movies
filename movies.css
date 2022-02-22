@@ -1,0 +1,7 @@
+body{
+    background-color: #403a35;
+}
+.gif {
+    display: flex;
+    justify-content: center;
+}

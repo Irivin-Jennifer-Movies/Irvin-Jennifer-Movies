@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <script src="jquery-2.2.4.js"></script>
+    <link rel="stylesheet" href="movies.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="movies.js"></script>
@@ -9,23 +10,25 @@
     <title>Title</title>
 </head>
 <body onload="onLoad()">
-<p>Loading</p>
+<div class="gif">
+    <iframe src="https://giphy.com/embed/Y1MWS94fzGmaPneDzN" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><a href="https://giphy.com/gifs/proairmedienagentur-air-pro-proair-Y1MWS94fzGmaPneDzN"></a>
+</div>
 <div class="container">
     <nav>
-        <div class="bg-primary text-center">
-            <h1 class="text-white">Movies</h1>
+        <div class="bg-primary text-center" id="movies-header" style="display: none">
+            <h1 class="text-white" >Movies</h1>
         </div>
     </nav>
     <main class="row">
         <div class="container">
+
             <div class="row justify-content-center" id="card-div">
             </div>
         </div>
     </main>
 </div>
 <div class="container">
-
-    <form id="movie-form">
+    <form id="movie-form" style="display: none">
         <input required type="text" class="form-control form-control-md" id="newTitle" placeholder="movie title">
         <input required type="text" class="form-control" id="newCast" placeholder="cast">
         <input required type="text" class="form-control" id="newDirector" placeholder="Director">

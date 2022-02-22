@@ -30,18 +30,21 @@ function getAllMovies() {
                                 </ul>
                                 <input type="button" value="save my edits" class="edit-button" onclick="saveEdits(${data[i].id})"/>
                                 <input type="button" value="delete" onclick="deleteCard(${data[i].id})"/>
-
                             </div>
                         </div>
                     `)
                 }
             }
-            $('p').css("display", "none");
+            $('.gif').css("display", "none");
+            $('#movies-header').css("display", "block");
+            $('#movie-form').css("display", "block");
+
         })
     );
 }
 
 function newMovies(newTitle, newCast, newDirector, newGenre, newDescription) {
+
 	$('#new-movie-submit').attr('disabled', true);
     const userInput = {
         title: newTitle,
@@ -66,6 +69,7 @@ function newMovies(newTitle, newCast, newDirector, newGenre, newDescription) {
 }
 
 function onLoad() {
+
     $("#movie-form").on("submit", (e) => {
         e.preventDefault()
         let newTitle = $('#newTitle').val();
@@ -117,4 +121,7 @@ function deleteCard(id) {
 }
 
 
-getAllMovies();
+
+setTimeout(getAllMovies, 3000);
+// setTimeout($("#movies-form"), 3000)
+
