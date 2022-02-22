@@ -5,3 +5,17 @@ body{
     display: flex;
     justify-content: center;
 }
+#movie-form{
+    margin: 0 auto;
+    width: 50%;
+}
+#newDescription{
+    height: 85px;
+}
+.form-control{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#new-movie-submit{
+    margin-bottom: 10em;
+}
