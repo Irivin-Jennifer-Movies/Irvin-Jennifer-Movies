@@ -12,7 +12,7 @@ function getAllMovies() {
 					//language=HTML
 					$('#card-div').append(`
                         <div class="card-deck">
-                            <div class="card" id="movie0" style="width: 18rem;">
+                            <div class="card m-4" id="movie0" style="width: 18rem;">
                                 ${imgTag}
                                 <div class="card-body">
                                     <h5 contenteditable="true" class="card-title">${title}</h5>
