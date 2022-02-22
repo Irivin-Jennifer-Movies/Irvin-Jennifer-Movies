@@ -31,7 +31,10 @@ fetch(url).then(response =>
 	})
 );
 }
-function newMovies() {
+
+function newMovies(event) {
+    event.preventDefault();
+    event.stopPropagation();
     const userInput = {
         title: "",
         actors: "",
@@ -49,6 +52,8 @@ function newMovies() {
         .then( response => {console.log(response)
             getAllMovies()})
 }
-newMovies();
+function onLoad() {
+    $("#movie-form").on("submit", newMovies);
+}
 
 getAllMovies();
