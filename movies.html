@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="movies.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="movies.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,8 +16,8 @@
 </div>
 <div class="container">
     <nav>
-        <div class="bg-primary text-center" id="movies-header" style="display: none">
-            <h1 class="text-white" >Movies</h1>
+        <div class="text-center mt-3" id="movies-header" style="display: none">
+            <h1 id="page-title" class="text-white" >Movies</h1>
         </div>
     </nav>
     <main class="row">
@@ -29,11 +30,13 @@
 </div>
 <div class="container">
     <form id="movie-form" style="display: none">
-        <input required type="text" class="form-control form-control-md" id="newTitle" placeholder="movie title">
-        <input required type="text" class="form-control" id="newCast" placeholder="cast">
+        <h2 class="text-white text-center">Add A Movie</h2>
+        <input required type="text" class="form-control form-control-md" id="newTitle" placeholder="Movie Title">
+        <input required type="text" class="form-control" id="newCast" placeholder="Cast">
         <input required type="text" class="form-control" id="newDirector" placeholder="Director">
         <input required type="text" class="form-control form-control-md" id="newGenre" placeholder="Genre">
         <input required type="text" class="form-control form-control-md" id="newDescription" placeholder="Description">
+        <input required type="text" class="form-control form-control-md" id="newRating" placeholder="Description">
         <input required type="submit" id="new-movie-submit" value="Submit">
     </form>
 </div>

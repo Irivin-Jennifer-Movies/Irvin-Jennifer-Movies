@@ -8,28 +8,29 @@ function getAllMovies() {
                 if (data[i].title === undefined) {
                 } else {
                     let title = data[i].title.toUpperCase();
-                    let imgTag = (data[i].poster) ? `<img className="card-img-top" style="height: 429px" src="${data[i].poster}" alt="Card image cap">` : "";
+                    let imgTag = (data[i].poster) ? `<img class="card-img-top" style="height: 429px" src="${data[i].poster}" alt="Card image cap">` : "";
                     //language=HTML
                     $('#card-div').append(`
                         <div class="card-deck">
                             <div class="card m-4" id="movie0" style="width: 18rem;">
                                 ${imgTag}
                                 <div class="card-body">
-                                    <h5 contenteditable="true" id="card-title-${data[i].id}" class="card-title">${title}</h5>
+                                    <h5 id="card-title-${data[i].id}" class="card-title">Title: <span contenteditable="true">${title}</span></h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li id="id" style="display:none">${data[i].id}</li>
-                                    <li contenteditable="true" id="actors-${data[i].id}" class="list-group-item"
-                                        style="height: 121px">${data[i].actors}
+                                    <li id="actors-${data[i].id}" class="list-group-item"
+                                        style="height: 121px">Actors: <span contenteditable="true">${data[i].actors}</span>
                                     </li>
-                                    <li contenteditable="true" id="director-${data[i].id}" class="list-group-item">
-                                        ${data[i].director}
+                                    <li id="director-${data[i].id}" class="list-group-item">
+                                        Directors: <span contenteditable="true">${data[i].director}</span>
                                     </li>
-                                    <li contenteditable="true" id="genre-${data[i].id}" class="list-group-item">${data[i].genre}</li>
-                                    <li contenteditable="true" id="plot-${data[i].id}" class="list-group-item">${data[i].plot}</li>
+                                    <li id="genre-${data[i].id}" class="list-group-item">Genres: <span contenteditable="true">${data[i].genre}</span></li>
+                                    <li id="plot-${data[i].id}" class="list-group-item">Plot: <span contenteditable="true">${data[i].plot}</span></li>
+                                    <li id="rating-${data[i].id}" class="list-group-item">Rating: <span contenteditable="true">${data[i].rating}</span></li>
                                 </ul>
-                                <input type="button" value="save my edits" class="edit-button" onclick="saveEdits(${data[i].id})"/>
-                                <input type="button" value="delete" onclick="deleteCard(${data[i].id})"/>
+                                <input type="button" value="Save My Edits" class="edit-button" onclick="saveEdits(${data[i].id})"/>
+                                <input type="button" value="Delete" class="delete-button" onclick="deleteCard(${data[i].id})"/>
                             </div>
                         </div>
                     `)
@@ -43,14 +44,15 @@ function getAllMovies() {
     );
 }
 
-function newMovies(newTitle, newCast, newDirector, newGenre, newDescription) {
+function newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
 
 	$('#new-movie-submit').attr('disabled', true);
     const userInput = {
         title: newTitle,
         actors: newCast,
         genre: newGenre,
-		plot: newDescription
+		plot: newDescription,
+        rating: newRating
     };
     const options = {
         method: 'POST',
@@ -77,7 +79,8 @@ function onLoad() {
         let newDirector = $('#newDirector').val();
         let newGenre = $('#newGenre').val();
         let newDescription = $('#newDescription').val();
-        newMovies(newTitle, newCast, newDirector, newGenre, newDescription);
+        let newRating = $('#newRating').val();
+        newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating);
     });
 }
 
@@ -89,12 +92,14 @@ function saveEdits(id) {
     let editedDirector = $('#director-' + id ).text();
     let editedGenre = $('#genre-' + id ).text();
     let editedDescription = $('#plot-' + id ).text();
+    let editedRating = $('#rating-' + id ).text();
     const userInput = {
         title: editedTitle,
         actors: editedCast,
         director: editedDirector,
         genre: editedGenre,
-        plot: editedDescription
+        plot: editedDescription,
+        rating: editedRating
     }
     fetch(url + "/" + id1, {
         method: 'PUT',

@@ -1,9 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
 body{
     background-color: #403a35 !important;
+    font-family: 'Mulish', sans-serif !important;
 }
 .gif {
     display: flex;
     justify-content: center;
+}
+#page-title {
+    font-family: 'Limelight', cursive;
+    color: yellow !important;
+    font-size: 5rem;
+}
+.edit-button, .delete-button {
+    background-color: black;
+    color: white;
+    height: 3rem;
 }
 #movie-form{
     margin: 0 auto;
