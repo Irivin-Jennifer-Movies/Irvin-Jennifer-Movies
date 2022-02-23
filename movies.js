@@ -76,7 +76,7 @@ function getAllMovies() {
 				console.log($(event.target))
 				//data record for the id
 				$(`#rating-${recordId}`).text(rating)
-				// updateRating(rating, event.target);
+				updateRating(rating, event.target);
 			})
 		})
 	);
