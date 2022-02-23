@@ -33,3 +33,19 @@ body{
 #new-movie-submit{
     margin-bottom: 10em;
 }
+
+
+.rating {
+    width: 180px;
+}
+
+.ratingStar:hover {
+    filter: drop-shadow(1px 1px 4px gold);
+}
+
+.ratingStar {
+    color: #dabd18b2;
+}
+li{
+    list-style: none;
+}

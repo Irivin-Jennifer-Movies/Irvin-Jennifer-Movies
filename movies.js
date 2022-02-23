@@ -15,22 +15,37 @@ function getAllMovies() {
                             <div class="card m-4" id="movie0" style="width: 18rem;">
                                 ${imgTag}
                                 <div class="card-body">
-                                    <h5 id="card-title-${data[i].id}" class="card-title">Title: <span contenteditable="true">${title}</span></h5>
+                                    <h5 id="card-title-${data[i].id}" class="card-title"><span
+                                            contenteditable="true">${title}</span></h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li id="id" style="display:none">${data[i].id}</li>
                                     <li id="actors-${data[i].id}" class="list-group-item"
-                                        style="height: 121px">Actors: <span contenteditable="true">${data[i].actors}</span>
+                                        style="height: 121px"><span contenteditable="true">${data[i].actors}</span>
                                     </li>
                                     <li id="director-${data[i].id}" class="list-group-item">
-                                        Directors: <span contenteditable="true">${data[i].director}</span>
+                                        <span contenteditable="true">${data[i].director}</span>
                                     </li>
-                                    <li id="genre-${data[i].id}" class="list-group-item">Genres: <span contenteditable="true">${data[i].genre}</span></li>
-                                    <li id="plot-${data[i].id}" class="list-group-item">Plot: <span contenteditable="true">${data[i].plot}</span></li>
-                                    <li id="rating-${data[i].id}" class="list-group-item">Rating: <span contenteditable="true">${data[i].rating}</span></li>
+                                    <li id="genre-${data[i].id}" class="list-group-item"><span
+                                            contenteditable="true">${data[i].genre}</span></li>
+                                    <li id="plot-${data[i].id}" class="list-group-item"><span
+                                            contenteditable="true">${data[i].plot}</span></li>
+                                    <li id="rating-${data[i].id}" class="list-group-item"><span
+                                            contenteditable="true">${data[i].rating}</span></li>
+                                    <li>
+                                        <div class="rating ">
+                                            <i id="star-1" class="fa fa-star"></i>
+                                            <i id="star-2" class="fa fa-star"></i>
+                                            <i id="star-3" class="fa fa-star"></i>
+                                            <i id="star-4" class="fa fa-star"></i>
+                                            <i id="star-5" class="fa fa-star"></i>
+                                        </div>
+                                    </li>
                                 </ul>
-                                <input type="button" value="Save My Edits" class="edit-button" onclick="saveEdits(${data[i].id})"/>
-                                <input type="button" value="Delete" class="delete-button" onclick="deleteCard(${data[i].id})"/>
+                                <input type="button" value="Save My Edits" class="edit-button"
+                                       onclick="saveEdits(${data[i].id})"/>
+                                <input type="button" value="Delete" class="delete-button"
+                                       onclick="deleteCard(${data[i].id})"/>
                             </div>
                         </div>
                     `)
@@ -40,18 +55,25 @@ function getAllMovies() {
             $('#movies-header').css("display", "block");
             $('#movie-form').css("display", "block");
 
+            // Setup rating listeners after data is loaded.
+            // there were no movie elements to add the star icons for
+            let iconElements = $("i")
+            iconElements.click((event) => {
+                const rating = parseInt(event.target.id.split("-")[1]);
+                updateRating(rating, event.target);
+            })
         })
     );
 }
 
 function newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
 
-	$('#new-movie-submit').attr('disabled', true);
+    $('#new-movie-submit').attr('disabled', true);
     const userInput = {
         title: newTitle,
         actors: newCast,
         genre: newGenre,
-		plot: newDescription,
+        plot: newDescription,
         rating: newRating
     };
     const options = {
@@ -65,7 +87,7 @@ function newMovies(newTitle, newCast, newDirector, newGenre, newDescription, new
     fetch(url, options)
         .then(response => {
             console.log(response)
-			$('#new-movie-submit').attr('disabled', false);
+            $('#new-movie-submit').attr('disabled', false);
             getAllMovies()
         })
 }
@@ -86,13 +108,12 @@ function onLoad() {
 
 function saveEdits(id) {
     let id1 = id;
-    let editedTitle = $('#card-title-' + id ).text();
-    console.log(editedTitle)
-    let editedCast = $('#actors-' + id ).text();
-    let editedDirector = $('#director-' + id ).text();
-    let editedGenre = $('#genre-' + id ).text();
-    let editedDescription = $('#plot-' + id ).text();
-    let editedRating = $('#rating-' + id ).text();
+    let editedTitle = $('#card-title-' + id).text();
+    let editedCast = $('#actors-' + id).text();
+    let editedDirector = $('#director-' + id).text();
+    let editedGenre = $('#genre-' + id).text();
+    let editedDescription = $('#plot-' + id).text();
+    let editedRating = $('#rating-' + id).text();
     const userInput = {
         title: editedTitle,
         actors: editedCast,
@@ -108,7 +129,6 @@ function saveEdits(id) {
         },
         body: JSON.stringify(userInput),
     }).then(response => {
-        console.log(response)
         getAllMovies()
     });
 }
@@ -126,7 +146,24 @@ function deleteCard(id) {
 }
 
 
+//creating a rate but not not saving the rate YET
+function updateRating(userRating, targetElement) {
+    const siblings = Array.from(targetElement.parentElement.getElementsByTagName('i'));
+    // targetElement is each of the i (star) elements
+    siblings.forEach(element => {
+        const ratingToCheck = parseInt(element.id.split("-")[1]);
+        // splitting out the star part of ID to only read the number of the element
+        if (ratingToCheck <= userRating) {
+            if (!element.classList.contains("ratingStar")) {
+                element.classList.add("ratingStar");
+            }
+        } else {
+            element.classList.remove("ratingStar");
+        }
+    });
+    // TODO: save the rating value
+}
+
 
 setTimeout(getAllMovies, 3000);
-// setTimeout($("#movies-form"), 3000)
 
