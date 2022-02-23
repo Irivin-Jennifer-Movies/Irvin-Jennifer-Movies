@@ -14,22 +14,28 @@ function getAllMovies() {
                         <div class="card-deck">
                             <div class="card m-4" id="movie0" style="width: 18rem;">
                                 ${imgTag}
+                                <li class="card-info"> TITLE </li>
                                 <div class="card-body">
-                                    <h5 id="card-title-${data[i].id}" class="card-title"><span
-                                            contenteditable="true">${title}</span></h5>
+                                    <p id="card-title-${data[i].id}" class="card-title"><span
+                                            contenteditable="true">${title}</span></p>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li id="id" style="display:none">${data[i].id}</li>
+                                    <li class="card-info"> ACTORS </li>
                                     <li id="actors-${data[i].id}" class="list-group-item"
-                                        style="height: 121px"><span contenteditable="true">${data[i].actors}</span>
+                                        style="height: 150px"><span contenteditable="true">${data[i].actors}</span>
                                     </li>
+                                    <li class="card-info"> DIRECTOR </li>
                                     <li id="director-${data[i].id}" class="list-group-item">
                                         <span contenteditable="true">${data[i].director}</span>
                                     </li>
+                                    <li class="card-info"> GENRE </li>
                                     <li id="genre-${data[i].id}" class="list-group-item"><span
                                             contenteditable="true">${data[i].genre}</span></li>
+                                    <li class="card-info"> PLOT </li>
                                     <li id="plot-${data[i].id}" class="list-group-item"><span
                                             contenteditable="true">${data[i].plot}</span></li>
+                                    <li class="card-info"> RATING </li>
                                     <li id="rating-${data[i].id}" class="list-group-item"><span
                                             contenteditable="true">${data[i].rating}</span></li>
                                     <li>
