@@ -7,36 +7,10 @@ function getAllMovies() {
 			for (let i = 0; i < data.length; i++) {
 				if (data[i].title === undefined) {
 				} else {
-					switch (data[i].rating) {
-						case '1':
-							$('#star-1').addClass('ratingStar');
-							break
-						case '2':
-							$('#star-1').addClass('ratingStar');
-							$('#star-2').addClass('ratingStar');
-							break
-						case '3':
-							$('#star-1').addClass('ratingStar');
-							$('#star-2').addClass('ratingStar');
-							$('#star-3').addClass('ratingStar');
-							break
-						case '4':
-							$('#star-1').addClass('ratingStar');
-							$('#star-2').addClass('ratingStar');
-							$('#star-3').addClass('ratingStar');
-							$('#star-4').addClass('ratingStar');
-							break;
-						case '5':
-							$('#star-1').addClass('ratingStar');
-							$('#star-2').addClass('ratingStar');
-							$('#star-3').addClass('ratingStar');
-							$('#star-4').addClass('ratingStar');
-							$('#star-5').addClass('ratingStar');
-					}
 					let title = data[i].title.toUpperCase();
 					let imgTag = (data[i].poster) ? `<img class="card-img-top" style="height: 429px" src="${data[i].poster}" alt="Card image cap">` : "";
 					//language=HTML
-					$('#card-div').append(`
+					let html = `
                         <div class="card-deck">
                             <div class="card m-4" id="movie0" style="width: 18rem;">
                                 ${imgTag}
@@ -65,12 +39,15 @@ function getAllMovies() {
                                     <li id="rating-${data[i].id}" class="list-group-item"><span
                                             contenteditable="true">${data[i].rating}</span></li>
                                     <li>
-                                        <div class="rating">
-                                            <i id="star-1" class="fa fa-star"></i>
-                                            <i id="star-2" class="fa fa-star"></i>
-                                            <i id="star-3" class="fa fa-star"></i>
-                                            <i id="star-4" class="fa fa-star"></i>
-                                            <i id="star-5" class="fa fa-star"></i>
+                                        <div class="rating">`;
+                    for (let j = 1; j <= 5; j++) {
+                        if (j <= data[i].rating ){
+                            html += `<i id="star-${j}" class="fa fa-star ratingStar"></i>`
+                        } else {
+                            html += `<i id="star-${j}" class="fa fa-star"></i>`
+                        }
+                    }
+                                       html += `
                                         </div>
                                     </li>
                                 </ul>
@@ -80,7 +57,8 @@ function getAllMovies() {
                                        onclick="deleteCard(${data[i].id})"/>
                             </div>
                         </div>
-					`)
+					`;
+					$('#card-div').append(html);
 				}
 			}
 			$('.gif').css("display", "none");
@@ -146,7 +124,7 @@ function saveEdits(id) {
 	let editedDirector = $('#director-' + id).text();
 	let editedGenre = $('#genre-' + id).text();
 	let editedDescription = $('#plot-' + id).text();
-	let editedRating = $('#rating-' + id).text();
+	let editedRating = $('.rating' + id).text();
 	const userInput = {
 		title: editedTitle,
 		actors: editedCast,
