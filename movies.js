@@ -124,6 +124,7 @@ function onLoad() {
 // const star = parseInt(element.id.split("-")[1]);
 
 function saveEdits(id) {
+	let poster1 = poster;
 	let id1 = id;
 	let editedTitle = $('#card-title-' + id).text();
 	let editedCast = $('#actors-' + id).text();
@@ -135,6 +136,7 @@ function saveEdits(id) {
 	console.log(editedRating)
 
 	const userInput = {
+		poster: poster1,
 		title: editedTitle,
 		actors: editedCast,
 		director: editedDirector,
