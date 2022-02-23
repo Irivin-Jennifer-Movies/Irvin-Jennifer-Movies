@@ -36,15 +36,15 @@ function getAllMovies() {
                                     <li id="plot-${data[i].id}" class="list-group-item"><span
                                             contenteditable="true">${data[i].plot}</span></li>
                                     <li class="card-info"> RATING</li>
-                                    <li id="rating-${data[i].id}" class="list-group-item"><span
+                                    <li  id="rating-${data[i].id}" class="list-group-item d-none"><span
                                             contenteditable="true">${data[i].rating}</span></li>
                                     <li>
                                         <div class="rating">`;
                     for (let j = 1; j <= 5; j++) {
                         if (j <= data[i].rating ){
-                            html += `<i id="star-${j}" class="fa fa-star ratingStar"></i>`
+                            html += `<i value="${j}" id="star-${j}" data-id="${data[i].id}" class="fa fa-star ratingStar"></i>`
                         } else {
-                            html += `<i id="star-${j}" class="fa fa-star"></i>`
+                            html += `<i value="${j}" id="star-${j}" data-id="${data[i].id}" class="fa fa-star"></i>`
                         }
                     }
                                        html += `
@@ -68,10 +68,15 @@ function getAllMovies() {
 			// Setup rating listeners after data is loaded.
 			// there were no movie elements to add the star icons for
 			let iconElements = $("i")
-			iconElements.click((event) => {
+			$(".fa-star").click((event) => {
 				const rating = parseInt(event.target.id.split("-")[1]);
-				console.log(event.target)
-				updateRating(rating, event.target);
+
+				// console.log(event.target)
+				let recordId = $(event.target).data("id")
+				console.log($(event.target))
+				//data record for the id
+				$(`#rating-${recordId}`).text(rating)
+				// updateRating(rating, event.target);
 			})
 		})
 	);
@@ -116,6 +121,7 @@ function onLoad() {
 		newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating);
 	});
 }
+// const star = parseInt(element.id.split("-")[1]);
 
 function saveEdits(id) {
 	let id1 = id;
@@ -124,7 +130,10 @@ function saveEdits(id) {
 	let editedDirector = $('#director-' + id).text();
 	let editedGenre = $('#genre-' + id).text();
 	let editedDescription = $('#plot-' + id).text();
-	let editedRating = $('.rating' + id).text();
+	let editedRating = $('#rating-' + id).text();
+	// let editedRating = ($("#star-").attr("value"));
+	console.log(editedRating)
+
 	const userInput = {
 		title: editedTitle,
 		actors: editedCast,
@@ -143,7 +152,6 @@ function saveEdits(id) {
 		getAllMovies()
 	});
 }
-
 
 function deleteCard(id) {
 	let id1 = id;
