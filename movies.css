@@ -25,11 +25,12 @@ body {
     height: 3rem;
 }
 #nav {
+    margin-top: 0;
     position: relative;
 }
 
 #search-input {
-    width: 13em;
+    width: 15em;
 }
 
 #movie-form {
@@ -79,4 +80,8 @@ li {
     background-color: black;
     color: yellow;
     width: 100%;
+}
+.card-deck {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
