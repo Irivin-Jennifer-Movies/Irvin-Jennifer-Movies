@@ -97,5 +97,7 @@ li {
     top: 300px;
     left: 20%;
     z-index: -1000;
-
+}
+.hide {
+    display: none !important;
 }

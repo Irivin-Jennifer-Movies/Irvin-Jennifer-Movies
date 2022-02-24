@@ -12,7 +12,7 @@ function getAllMovies() {
 					//language=HTML
 					let html = `
                         <div class="card-deck">
-                            <div class="card" id="movie0-${data[i].id}" style="width: 18rem;">
+                            <div class="card m-4" id="movie0-${data[i].id}" style="width: 18rem;">
                                 ${imgTag}
                                 <li class="card-info"> TITLE</li>
                                 <div class="card-body">
@@ -91,9 +91,9 @@ function search(data){
 				continue
 			}
 			if (data[i].title.includes(value.toLowerCase()) === false){
-				document.querySelector(`#movie0-${data[i].id}`).style.display = "none";
+				document.querySelector(`#movie0-${data[i].id}`).classList.add("hide");
 			} 			if (data[i].title.includes(value.toLowerCase()) === true) {
-				document.querySelector(`#movie0-${data[i].id}`).style.display = "appear";
+				document.querySelector(`#movie0-${data[i].id}`).classList.remove("hide");
 			}
 		}
 	})
