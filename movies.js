@@ -8,7 +8,7 @@ function getAllMovies() {
 				if (data[i].title === undefined) {
 				} else {
 					let title = data[i].title.toUpperCase();
-					let imgTag = (data[i].poster) ? `<img class="card-img-top" style="height: 429px" src="${data[i].poster}" alt="Card image cap">` : "";
+					let imgTag = (data[i].poster) ? `<img class="card-img-top" style="height: 429px" src="${data[i].poster}" id = "posterImage-${data[i].id}" alt="Card image cap">` : "";
 					//language=HTML
 					let html = `
                         <div class="card-deck">
@@ -124,8 +124,8 @@ function onLoad() {
 // const star = parseInt(element.id.split("-")[1]);
 
 function saveEdits(id) {
-	let poster1 = poster;
 	let id1 = id;
+	let poster1 = $("#posterImage-" + id).attr("src");
 	let editedTitle = $('#card-title-' + id).text();
 	let editedCast = $('#actors-' + id).text();
 	let editedDirector = $('#director-' + id).text();
