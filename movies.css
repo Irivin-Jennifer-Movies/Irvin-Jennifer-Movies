@@ -25,8 +25,11 @@ body {
     height: 3rem;
 }
 #nav {
-    margin-top: 0;
     position: relative;
+
+}
+#search-bar {
+    padding-bottom: 1em;
 }
 
 #search-input {
@@ -84,4 +87,15 @@ li {
 .card-deck {
     margin-left: 0 !important;
     margin-right: 0 !important;
+}
+
+.bottom-form{
+    position: relative;
+}
+.popcorn-image {
+    position: absolute;
+    top: 300px;
+    left: 20%;
+    z-index: -1000;
+
 }
