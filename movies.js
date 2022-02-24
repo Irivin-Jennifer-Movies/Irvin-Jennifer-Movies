@@ -12,7 +12,7 @@ function getAllMovies() {
 					//language=HTML
 					let html = `
                         <div class="card-deck">
-                            <div class="card m-4" id="movie0" style="width: 18rem;">
+                            <div class="card m-4" id="movie0-${data[i].id}" style="width: 18rem;">
                                 ${imgTag}
                                 <li class="card-info"> TITLE</li>
                                 <div class="card-body">
@@ -79,18 +79,27 @@ function getAllMovies() {
 				$(`#rating-${recordId}`).text(rating)
 				updateRating(rating, event.target);
 			})
-			$('#search-bar').on('input', (e)=>{
-				let value = e.target.value
-				console.log(value)
-				for (let i = 0; i < data.length; i++) {
-					if (data[i].title.includes(value) === true){
-						console.log(data[i].title)
-					}
-				}
-			})
+			search (data);
 		})
 	);
 }
+function search(data){
+	$('#search-bar').on('input', (e)=>{
+		let value = e.target.value
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].title === undefined){
+				continue
+			}
+			if (data[i].title.includes(value.toLowerCase()) === false){
+				document.querySelector(`#movie0-${data[i].id}`).style.display = "none";
+			} 			if (data[i].title.includes(value.toLowerCase()) === true) {
+				document.querySelector(`#movie0-${data[i].id}`).style.display = "block";
+			}
+		}
+	})
+}
+
+
 
 function newMovies(newPoster, newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
 
@@ -146,14 +155,14 @@ function onLoad() {
 function saveEdits(id) {
 	let id1 = id;
 	let poster1 = $("#posterImage-" + id).attr("src");
-	let editedTitle = $('#card-title-' + id).text();
+	let editedTitle = $('#card-title-' + id).text().toLowerCase();
 	let editedCast = $('#actors-' + id).text();
 	let editedDirector = $('#director-' + id).text();
 	let editedGenre = $('#genre-' + id).text();
 	let editedDescription = $('#plot-' + id).text();
 	let editedRating = $('#rating-' + id).text();
 	// let editedRating = ($("#star-").attr("value"));
-	console.log(editedRating)
+	// console.log(editedRating)
 
 	const userInput = {
 		poster: poster1,
