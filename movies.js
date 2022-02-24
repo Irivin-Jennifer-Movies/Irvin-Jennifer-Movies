@@ -64,6 +64,7 @@ function getAllMovies() {
 			$('.gif').css("display", "none");
 			$('#movies-header').css("display", "block");
 			$('#movie-form').css("display", "block");
+			$('#search-bar').css('display', 'block')
 
 			// Setup rating listeners after data is loaded.
 			// there were no movie elements to add the star icons for
@@ -77,6 +78,15 @@ function getAllMovies() {
 				//data record for the id
 				$(`#rating-${recordId}`).text(rating)
 				updateRating(rating, event.target);
+			})
+			$('#search-bar').on('input', (e)=>{
+				let value = e.target.value
+				console.log(value)
+				for (let i = 0; i < data.length; i++) {
+					if (data[i].title.includes(value) === true){
+						console.log(data[i].title)
+					}
+				}
 			})
 		})
 	);

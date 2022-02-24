@@ -1,38 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap');
 
-body{
+body {
     background-color: #403a35 !important;
     font-family: 'Pathway Gothic One', sans-serif !important;
     font-size: x-large !important;
 }
+
 .gif {
     display: flex;
     justify-content: center;
 }
+
 #page-title {
     font-family: 'Limelight', cursive;
     color: yellow !important;
     font-size: 5rem;
     text-shadow: 3px 2px black;
 }
+
 .edit-button, .delete-button {
     background-color: black;
     color: white;
     height: 3rem;
 }
-#movie-form{
+#nav {
+    position: relative;
+}
+
+#search-input {
+    width: 13em;
+}
+
+#movie-form {
     margin: 0 auto;
     width: 50%;
 }
-#newDescription{
+
+#newDescription {
     height: 85px;
 }
-.form-control{
+
+.form-control {
     margin-top: 1em;
     margin-bottom: 1em;
 }
-#new-movie-submit{
+
+#new-movie-submit {
     margin-bottom: 10em;
 }
 
@@ -40,22 +54,27 @@ body{
     color: #dabd18b2;
 }
 
-li{
+li {
     list-style: none;
 }
+
 .card-info {
     background-color: lightgray;
 }
-.card-title{
+
+.card-title {
     font-size: xx-large;
     font-weight: bolder;
 }
+
 .text {
     color: yellow;
 }
+
 .edit-button, .delete-button {
     color: yellow;
 }
+
 #new-movie-submit {
     background-color: black;
     color: yellow;
