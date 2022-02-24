@@ -82,11 +82,13 @@ function getAllMovies() {
 	);
 }
 
-function newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
+function newMovies(newPoster, newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
 
 	$('#new-movie-submit').attr('disabled', true);
 	const userInput = {
 		title: newTitle,
+		poster: newPoster,
+		director: newDirector,
 		actors: newCast,
 		genre: newGenre,
 		plot: newDescription,
@@ -112,13 +114,21 @@ function onLoad() {
 
 	$("#movie-form").on("submit", (e) => {
 		e.preventDefault()
+		let newPoster = $('#newPoster').val();
 		let newTitle = $('#newTitle').val();
 		let newCast = $('#newCast').val();
 		let newDirector = $('#newDirector').val();
 		let newGenre = $('#newGenre').val();
 		let newDescription = $('#newDescription').val();
 		let newRating = $('#newRating').val();
-		newMovies(newTitle, newCast, newDirector, newGenre, newDescription, newRating);
+		$('#newPoster').val("");
+		$('#newTitle').val("");
+		$('#newCast').val("");
+		$('#newDirector').val("");
+		$('#newGenre').val("");
+		$('#newDescription').val("");
+		$('#newRating').val("");
+		newMovies(newPoster ,newTitle, newCast, newDirector, newGenre, newDescription, newRating);
 	});
 }
 // const star = parseInt(element.id.split("-")[1]);
