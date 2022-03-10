@@ -215,5 +215,5 @@ function updateRating(userRating, targetElement) {
 }
 
 
-setTimeout(getAllMovies, 3000);
+setTimeout(getAllMovies, 2000);
 
