@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/movies"
+const url = "http://localhost:8081/movies"
 
 // WORKING FINE
 function getAllMovies() {
@@ -111,6 +111,7 @@ function newMovies(newPoster, newTitle, newCast, newDirector, newGenre, newDescr
 	const userInput = {
 		title: newTitle,
 		poster: newPoster,
+		year: newYear,
 		director: newDirector,
 		actors: newCast,
 		genre: newGenre,
@@ -180,6 +181,7 @@ function saveEdits(id) {
 		plot: editedDescription,
 		rating: editedRating
 	}
+	console.log(userInput)
 	fetch(url + "/" + id1, {
 		method: 'PUT',
 		headers: {
