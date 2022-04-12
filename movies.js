@@ -1,5 +1,6 @@
-const url = "https://cute-savory-grandparent.glitch.me/movies"
+const url = "http://localhost:8080/movies"
 
+// WORKING FINE
 function getAllMovies() {
 	fetch(url).then(response =>
 		response.json().then(data => {
@@ -83,6 +84,8 @@ function getAllMovies() {
 		})
 	);
 }
+ // TODO: SEARCH NOT WORKING FOR ALL MOVIES
+
 function search(data){
 	$('#search-bar').on('input', (e)=>{
 		let value = e.target.value
@@ -100,6 +103,7 @@ function search(data){
 }
 
 
+// TODO: NOT ADDING NEW MOVIES
 
 function newMovies(newPoster, newTitle, newCast, newDirector, newGenre, newDescription, newRating) {
 
@@ -152,6 +156,8 @@ function onLoad() {
 }
 // const star = parseInt(element.id.split("-")[1]);
 
+// TODO: ONLY WORKS FOR TITLE AND RATING
+
 function saveEdits(id) {
 	let id1 = id;
 	let poster1 = $("#posterImage-" + id).attr("src");
@@ -161,6 +167,7 @@ function saveEdits(id) {
 	let editedGenre = $('#genre-' + id).text();
 	let editedDescription = $('#plot-' + id).text();
 	let editedRating = $('#rating-' + id).text();
+	// console.log(saveEdits(3));
 	// let editedRating = ($("#star-").attr("value"));
 	// console.log(editedRating)
 
@@ -196,7 +203,6 @@ function deleteCard(id) {
 }
 
 
-//creating a rate but not not saving the rate YET
 function updateRating(userRating, targetElement) {
 	const siblings = Array.from(targetElement.parentElement.getElementsByTagName('i'));
 	// targetElement is each of the i (star) elements
@@ -211,7 +217,6 @@ function updateRating(userRating, targetElement) {
 			element.classList.remove("ratingStar");
 		}
 	});
-	// TODO: save the rating value
 }
 
 
